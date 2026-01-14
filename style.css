@@ -453,8 +453,16 @@ body.light .section {
 }
 
 .section-header h2 {
-  margin: 4px 0 0;
+  margin: 0;
   font-size: 1.5rem;
+}
+
+.section-summary {
+  margin: 16px 0 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ADD8E6;
+  line-height: 1.6;
 }
 
 .section-body {
@@ -475,18 +483,100 @@ body.light .section {
   background: #f5f5f5;
   border: 1px solid rgba(0, 0, 0, 0.05);
   transition: box-shadow var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+  min-height: 200px;
+}
+
+.content-item-image {
+  display: none;
+}
+
+.content-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45%;
+  height: 100%;
+  background-size: cover;
+  background-position: left center;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  filter: grayscale(100%);
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal), filter var(--transition-normal);
+}
+
+.content-item:hover::after {
+  opacity: 0.8;
+  filter: grayscale(90%);
+}
+
+.content-item > div {
+  position: relative;
+  z-index: 1;
+  width: 50%;
+  padding-right: 40px;
+}
+
+/* 為每個 content-item 設定對應的背景圖片 */
+.content-item:nth-child(1)::after {
+  background-image: url('images/tech-learning.jpg.png');
+}
+
+.content-item:nth-child(2)::after {
+  background-image: url('images/graduate-study.jpg.png');
+}
+
+.content-item:nth-child(3)::after {
+  background-image: url('images/design-practice.jpg.png');
+}
+
+/* Strategic Objectives 區塊 */
+#skills .content-item:nth-child(1)::after {
+  background-image: url('images/digital-tech.jpg.png');
+}
+
+#skills .content-item:nth-child(2)::after {
+  background-image: url('images/research-foundation.jpg.png');
+}
+
+#skills .content-item:nth-child(3)::after {
+  background-image: url('images/design-implementation.jpg.png');
+}
+
+/* IDP 區塊 */
+#experience .content-item:nth-child(1)::after {
+  background-image: url('images/user-research.jpg.png');
+}
+
+#experience .content-item:nth-child(2)::after {
+  background-image: url('images/system-thinking.jpg.png');
+}
+
+#experience .content-item:nth-child(3)::after {
+  background-image: url('images/cross-disciplinary.jpg.png');
 }
 
 .content-item:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
+.content-item h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
 .content-item > p {
   margin: 0 0 12px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 1.7;
   color: var(--text);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .content-item > p:last-child {
@@ -502,7 +592,7 @@ body.light .section {
 .content-item ul li {
   position: relative;
   padding: 8px 0 8px 20px;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   line-height: 1.7;
   color: var(--text-muted);
 }
@@ -1109,6 +1199,17 @@ body.light .reveal-on-scroll:hover {
   .portfolio-grid {
     grid-template-columns: 1fr;
     gap: 16px;
+  }
+
+  .content-item::after {
+    width: 35%;
+    opacity: 0.6;
+    background-position: left center;
+  }
+
+  .content-item > div {
+    width: 60%;
+    padding-right: 20px;
   }
 }
 
