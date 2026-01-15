@@ -1111,6 +1111,13 @@ body.light .contact-form {
     background var(--transition-fast), transform 0.12s ease-out;
 }
 
+.field textarea {
+  resize: none;
+  overflow-y: hidden;
+  min-height: 80px;
+  line-height: 1.6;
+}
+
 body.light .field input,
 body.light .field textarea {
   background: #ffffff;
