@@ -447,6 +447,78 @@ body.light .section {
   transform: scale(1.02);
 }
 
+/* 作品集圖片燈箱（Lightbox） */
+.portfolio-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, background 0.4s ease;
+}
+
+.portfolio-lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.portfolio-lightbox.closing {
+  background: rgba(0, 0, 0, 0);
+  opacity: 0;
+}
+
+.portfolio-lightbox-close {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 1001;
+  backdrop-filter: blur(10px);
+}
+
+.portfolio-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+}
+
+.portfolio-lightbox-image {
+  max-width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  transform: scale(0.8);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+  opacity: 0;
+}
+
+.portfolio-lightbox.active .portfolio-lightbox-image {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.portfolio-lightbox-image.closing {
+  transform: scale(0.8);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+}
+
 .section-header {
   position: relative;
   margin-bottom: 18px;
@@ -458,11 +530,16 @@ body.light .section {
 }
 
 .section-summary {
-  margin: 16px 0 0;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #ADD8E6;
-  line-height: 1.6;
+  margin: 20px 0 24px;
+  padding: 16px 20px;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #4FC3F7;
+  line-height: 1.7;
+  background: rgba(79, 195, 247, 0.1);
+  border-left: 3px solid #4FC3F7;
+  border-radius: 8px;
+  letter-spacing: 0.02em;
 }
 
 .section-body {
@@ -1082,7 +1159,7 @@ body.light .field textarea {
 }
 
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: float 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @keyframes float {
@@ -1090,8 +1167,14 @@ body.light .field textarea {
   100% {
     transform: translate3d(0, 0, 0);
   }
+  25% {
+    transform: translate3d(0, -20px, 0);
+  }
   50% {
-    transform: translate3d(0, -8px, 0);
+    transform: translate3d(0, -25px, 0);
+  }
+  75% {
+    transform: translate3d(0, -20px, 0);
   }
 }
 

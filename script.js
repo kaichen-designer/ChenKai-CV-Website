@@ -8,13 +8,17 @@ if (yearSpan) {
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     const href = this.getAttribute("href");
-    // 排除 logo 的刷新行為
+    // Logo 點擊滾動到封面頁
     if (href === "#top" && this.classList.contains("logo")) {
       e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      setTimeout(() => {
-        window.location.reload();
-      }, 300);
+      const target = document.querySelector("#top");
+      if (target) {
+        const offsetTop = target.offsetTop - 100; // 考慮導航欄高度
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth",
+        });
+      }
       return;
     }
     
@@ -31,16 +35,6 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       }
     }
   });
-});
-
-// Logo 點擊回到首頁並刷新
-const logoLink = document.querySelector(".logo");
-logoLink?.addEventListener("click", (e) => {
-  e.preventDefault();
-  window.scrollTo({ top: 0, behavior: "smooth" });
-  setTimeout(() => {
-    window.location.reload();
-  }, 300);
 });
 
 // 檢查照片是否載入成功
@@ -158,5 +152,137 @@ contactForm?.addEventListener("submit", (e) => {
     statusEl.textContent = "";
     contactForm.classList.remove("is-sent");
   }, 2600);
+});
+
+// 自動調整訊息欄高度
+const messageTextarea = document.getElementById("message");
+if (messageTextarea) {
+  // 自動調整高度的函數
+  function autoResizeTextarea() {
+    messageTextarea.style.height = "auto";
+    messageTextarea.style.height = `${messageTextarea.scrollHeight}px`;
+  }
+  
+  // 監聽輸入事件
+  messageTextarea.addEventListener("input", autoResizeTextarea);
+  
+  // 初始化高度
+  autoResizeTextarea();
+  
+  // 表單提交後重置高度
+  contactForm?.addEventListener("submit", () => {
+    setTimeout(() => {
+      messageTextarea.style.height = "auto";
+      autoResizeTextarea();
+    }, 100);
+  });
+}
+
+// 作品集圖片燈箱功能
+const portfolioItems = document.querySelectorAll(".portfolio-item");
+const lightbox = document.getElementById("portfolioLightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const lightboxClose = document.querySelector(".portfolio-lightbox-close");
+
+// 儲存原始圖片位置和尺寸
+let originalImageData = null;
+
+portfolioItems.forEach((item) => {
+  const img = item.querySelector("img");
+  if (!img) return;
+
+  item.addEventListener("click", () => {
+    const imgSrc = img.src;
+    const imgAlt = img.alt;
+    
+    // 儲存原始圖片的位置和尺寸
+    const rect = img.getBoundingClientRect();
+    originalImageData = {
+      src: imgSrc,
+      alt: imgAlt,
+      x: rect.left,
+      y: rect.top,
+      width: rect.width,
+      height: rect.height,
+    };
+
+    // 設置燈箱圖片
+    lightboxImage.src = imgSrc;
+    lightboxImage.alt = imgAlt;
+    
+    // 初始位置設置為原始圖片位置（用於動畫）
+    lightboxImage.style.position = "fixed";
+    lightboxImage.style.left = `${rect.left}px`;
+    lightboxImage.style.top = `${rect.top}px`;
+    lightboxImage.style.width = `${rect.width}px`;
+    lightboxImage.style.height = `${rect.height}px`;
+    
+    // 顯示燈箱
+    lightbox.classList.remove("closing");
+    lightbox.classList.add("active");
+    
+    // 強制重排，然後觸發動畫
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        lightboxImage.style.position = "";
+        lightboxImage.style.left = "";
+        lightboxImage.style.top = "";
+        lightboxImage.style.width = "";
+        lightboxImage.style.height = "";
+        lightboxImage.classList.remove("closing");
+      });
+    });
+    
+    // 防止背景滾動
+    document.body.style.overflow = "hidden";
+  });
+});
+
+// 關閉燈箱
+function closeLightbox() {
+  if (!lightbox.classList.contains("active")) return;
+  
+  // 同時觸發背景漸變和圖片縮小動畫
+  lightbox.classList.add("closing");
+  lightboxImage.classList.add("closing");
+  
+  // 設置縮小動畫的目標位置和尺寸
+  if (originalImageData) {
+    lightboxImage.style.position = "fixed";
+    lightboxImage.style.left = `${originalImageData.x}px`;
+    lightboxImage.style.top = `${originalImageData.y}px`;
+    lightboxImage.style.width = `${originalImageData.width}px`;
+    lightboxImage.style.height = `${originalImageData.height}px`;
+  }
+  
+  // 等待動畫完成後隱藏燈箱
+  setTimeout(() => {
+    lightbox.classList.remove("active", "closing");
+    lightboxImage.style.position = "";
+    lightboxImage.style.left = "";
+    lightboxImage.style.top = "";
+    lightboxImage.style.width = "";
+    lightboxImage.style.height = "";
+    lightboxImage.classList.remove("closing");
+    document.body.style.overflow = "";
+    originalImageData = null;
+  }, 400);
+}
+
+// 點擊關閉按鈕
+lightboxClose?.addEventListener("click", closeLightbox);
+
+// 點擊背景關閉
+lightbox?.addEventListener("click", (e) => {
+  if (e.target === lightbox) {
+    closeLightbox();
+  }
+});
+
+// ESC 鍵關閉
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && lightbox.classList.contains("active")) {
+    closeLightbox();
+  }
 });
 
