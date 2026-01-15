@@ -178,6 +178,17 @@ if (messageTextarea) {
   });
 }
 
+// 可摺疊內容項目功能
+const contentItems = document.querySelectorAll(".content-item");
+contentItems.forEach((item) => {
+  const header = item.querySelector(".content-item-header");
+  if (header) {
+    header.addEventListener("click", () => {
+      item.classList.toggle("active");
+    });
+  }
+});
+
 // 作品集圖片燈箱功能
 const portfolioItems = document.querySelectorAll(".portfolio-item");
 const lightbox = document.getElementById("portfolioLightbox");

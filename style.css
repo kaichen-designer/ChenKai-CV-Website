@@ -220,7 +220,7 @@ img {
   font-size: clamp(3.4rem, 5vw, 4.5rem);
   font-weight: 300;
   letter-spacing: 0.02em;
-  color: #000000;
+  color: #4FC3F7;
 }
 
 .hero-name {
@@ -536,7 +536,7 @@ body.light .section {
   font-weight: 800;
   color: #4FC3F7;
   line-height: 1.7;
-  background: rgba(79, 195, 247, 0.1);
+  background: #f5f5f5;
   border-left: 3px solid #4FC3F7;
   border-radius: 8px;
   letter-spacing: 0.02em;
@@ -555,14 +555,12 @@ body.light .section {
 }
 
 .content-item {
-  padding: 20px;
   border-radius: 16px;
   background: #f5f5f5;
   border: 1px solid rgba(0, 0, 0, 0.05);
   transition: box-shadow var(--transition-fast);
   position: relative;
   overflow: hidden;
-  min-height: 200px;
 }
 
 .content-item-image {
@@ -583,7 +581,7 @@ body.light .section {
   filter: grayscale(100%);
   z-index: 0;
   pointer-events: none;
-  transition: opacity var(--transition-normal), filter var(--transition-normal);
+  transition: opacity 0.3s linear, filter 0.3s linear;
 }
 
 .content-item:hover::after {
@@ -591,11 +589,56 @@ body.light .section {
   filter: grayscale(90%);
 }
 
-.content-item > div {
+/* 可摺疊內容項目的標題 */
+.content-item-header {
   position: relative;
   z-index: 1;
-  width: 50%;
-  padding-right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s linear;
+}
+
+.content-item-header:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.content-item-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+}
+
+.content-item-header i {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  transition: transform 0.3s linear, color 0.3s linear;
+}
+
+.content-item.active .content-item-header i {
+  transform: rotate(180deg);
+  color: #4FC3F7;
+}
+
+/* 可摺疊內容 */
+.content-item-content {
+  position: relative;
+  z-index: 1;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s linear, padding 0.25s linear;
+  padding: 0 20px;
+  width: 55%;
+}
+
+.content-item.active .content-item-content {
+  max-height: 2000px;
+  padding: 0 20px 20px;
 }
 
 /* 為每個 content-item 設定對應的背景圖片 */
@@ -641,14 +684,7 @@ body.light .section {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-.content-item h3 {
-  margin: 0 0 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.content-item > p {
+.content-item-content p {
   margin: 0 0 12px;
   font-size: 0.9rem;
   line-height: 1.7;
@@ -656,17 +692,17 @@ body.light .section {
   font-weight: 400;
 }
 
-.content-item > p:last-child {
+.content-item-content p:last-child {
   margin-bottom: 0;
 }
 
-.content-item ul {
+.content-item-content ul {
   margin: 12px 0 0;
   padding-left: 24px;
   list-style: none;
 }
 
-.content-item ul li {
+.content-item-content ul li {
   position: relative;
   padding: 8px 0 8px 20px;
   font-size: 0.85rem;
@@ -674,7 +710,7 @@ body.light .section {
   color: var(--text-muted);
 }
 
-.content-item ul li::before {
+.content-item-content ul li::before {
   content: "•";
   position: absolute;
   left: 0;
@@ -682,11 +718,11 @@ body.light .section {
   font-weight: bold;
 }
 
-.content-item ul li:first-child {
+.content-item-content ul li:first-child {
   margin-top: 0;
 }
 
-.content-item ul li:last-child {
+.content-item-content ul li:last-child {
   margin-bottom: 0;
 }
 
@@ -1290,9 +1326,9 @@ body.light .reveal-on-scroll:hover {
     background-position: left center;
   }
 
-  .content-item > div {
-    width: 60%;
-    padding-right: 20px;
+  .content-item-content {
+    width: 65%;
   }
+
 }
 
