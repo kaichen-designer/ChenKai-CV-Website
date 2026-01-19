@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
     <title>Chen Kai | Personal CV</title>
     <meta
       name="description"
@@ -251,7 +251,7 @@
                   <i class="fa-solid fa-chevron-down profile-accordion-icon"></i>
                 </div>
                 <div class="profile-accordion-preview">
-                  <p class="profile-accordion-preview-text">Software: Rhino, SolidWorks, Keyshot, Adobe CC | Design Skills: CMF, Prototyping, Design Research, User Experience</p>
+                  <p class="profile-accordion-preview-text">Software: Rhino, SolidWorks, Creo, Keyshot, Adobe CC, Figma | Design Skills: CMF, Prototyping, Design Research, User Experience</p>
                 </div>
                 <div class="profile-accordion-content">
                   <div class="profile-accordion-item-content">
@@ -261,8 +261,10 @@
                         <div class="skills-pills">
                           <span class="skill-pill">Rhino</span>
                           <span class="skill-pill">SolidWorks</span>
+                          <span class="skill-pill">Creo</span>
                           <span class="skill-pill">Keyshot</span>
                           <span class="skill-pill">Adobe CC</span>
+                          <span class="skill-pill">Figma</span>
                         </div>
                       </div>
                       <div class="profile-skill-category">
@@ -310,7 +312,7 @@
                 <p class="portfolio-category">Product Design | 2023</p>
               </div>
             </div>
-            <div class="portfolio-item reveal-on-scroll">
+            <div class="portfolio-item reveal-on-scroll" data-pdf="Cradle.pdf">
               <div class="portfolio-image-wrapper">
                 <img 
                   src="海龜復育箱(作品集)_工作區域 1.jpg" 
@@ -329,7 +331,7 @@
                 <p class="portfolio-category">Product Design | 2024</p>
               </div>
             </div>
-            <div class="portfolio-item reveal-on-scroll">
+            <div class="portfolio-item reveal-on-scroll" data-pdf="Wave Haven.pdf">
               <div class="portfolio-image-wrapper">
                 <img 
                   src="Wave Haven作品集展板_工作區域 1.jpg" 
@@ -348,7 +350,7 @@
                 <p class="portfolio-category">Service Design | 2024</p>
               </div>
             </div>
-            <div class="portfolio-item reveal-on-scroll">
+            <div class="portfolio-item reveal-on-scroll" data-pdf="公益行動.pdf">
               <div class="portfolio-image-wrapper">
                 <img 
                   src="公益行動作品集_工作區域 1.jpg" 
@@ -367,7 +369,7 @@
                 <p class="portfolio-category">UX Design | 2023</p>
               </div>
             </div>
-            <div class="portfolio-item reveal-on-scroll">
+            <div class="portfolio-item reveal-on-scroll" data-pdf="Navora.pdf">
               <div class="portfolio-image-wrapper">
                 <img 
                   src="等車亭作品集_工作區域 1.jpg" 
@@ -545,6 +547,10 @@
                 <a href="mailto:kaichen1216@gmail.com">kaichen1216@gmail.com</a>
               </div>
               <div class="contact-row">
+                <i class="fa-solid fa-phone"></i>
+                <a href="tel:0984312399">0984312399</a>
+              </div>
+              <div class="contact-row">
                 <i class="fa-brands fa-github"></i>
                 <a href="https://github.com/kaichen-designer" target="_blank" rel="noopener noreferrer">GitHub</a>
               </div>
@@ -555,6 +561,10 @@
               <div class="contact-row">
                 <i class="fa-solid fa-file-pdf"></i>
                 <a href="個人簡歷(研究所).pdf" class="resume-download" download="ChenKai_Resume.pdf">下載履歷 (PDF)</a>
+              </div>
+              <div class="contact-row">
+                <i class="fa-solid fa-folder-open"></i>
+                <a href="portfolio(研究所)jpg.pdf" class="portfolio-download" download="ChenKai_Portfolio.pdf">下載作品集 (PDF)</a>
               </div>
             </div>
           </div>
@@ -597,12 +607,13 @@
       <p>© <span id="year"></span> 陳愷. Designed by ChenKai.</p>
     </footer>
 
-    <!-- 作品集圖片燈箱 -->
+    <!-- 作品集圖片/PDF燈箱 -->
     <div class="portfolio-lightbox" id="portfolioLightbox">
       <button class="portfolio-lightbox-close" aria-label="關閉">
         <i class="fa-solid fa-xmark"></i>
       </button>
       <img class="portfolio-lightbox-image" src="" alt="" id="lightboxImage" />
+      <iframe class="portfolio-lightbox-pdf" id="lightboxPdf" src="" frameborder="0"></iframe>
     </div>
 
     <script src="script.js"></script>

@@ -189,63 +189,133 @@ contentItems.forEach((item) => {
   }
 });
 
-// 作品集圖片燈箱功能
+// Profile 收合式區塊功能
+const profileAccordionItems = document.querySelectorAll(".profile-accordion-item");
+profileAccordionItems.forEach((item) => {
+  const header = item.querySelector(".profile-accordion-header");
+  if (header) {
+    header.addEventListener("click", () => {
+      // 關閉其他已打開的項目（可選：如果希望同時只打開一個）
+      // profileAccordionItems.forEach((otherItem) => {
+      //   if (otherItem !== item && otherItem.classList.contains("active")) {
+      //     otherItem.classList.remove("active");
+      //   }
+      // });
+      item.classList.toggle("active");
+    });
+  }
+});
+
+// Vision 收合式區塊功能
+const visionAccordionItems = document.querySelectorAll(".vision-accordion-item");
+visionAccordionItems.forEach((item) => {
+  const header = item.querySelector(".vision-accordion-header");
+  if (header) {
+    header.addEventListener("click", () => {
+      item.classList.toggle("active");
+    });
+  }
+});
+
+// 作品集圖片/PDF燈箱功能
 const portfolioItems = document.querySelectorAll(".portfolio-item");
 const lightbox = document.getElementById("portfolioLightbox");
 const lightboxImage = document.getElementById("lightboxImage");
+const lightboxPdf = document.getElementById("lightboxPdf");
 const lightboxClose = document.querySelector(".portfolio-lightbox-close");
 
 // 儲存原始圖片位置和尺寸
 let originalImageData = null;
+let isPdfView = false;
 
 portfolioItems.forEach((item) => {
   const img = item.querySelector("img");
   if (!img) return;
 
   item.addEventListener("click", () => {
-    const imgSrc = img.src;
-    const imgAlt = img.alt;
+    const pdfFile = item.getAttribute("data-pdf");
     
-    // 儲存原始圖片的位置和尺寸
-    const rect = img.getBoundingClientRect();
-    originalImageData = {
-      src: imgSrc,
-      alt: imgAlt,
-      x: rect.left,
-      y: rect.top,
-      width: rect.width,
-      height: rect.height,
-    };
+    // 如果有 PDF 文件，顯示 PDF
+    if (pdfFile) {
+      isPdfView = true;
+      lightboxImage.style.display = "none";
+      lightboxPdf.style.display = "block";
+      
+      // 添加參數使 PDF 自動適應視窗大小，完整顯示首頁
+      // 使用多種參數組合以確保在不同瀏覽器中都能正常工作
+      // #page=1: 顯示第一頁
+      // #zoom=page-fit: 適應頁面大小（Chrome/Edge）
+      // #view=FitH: 適應寬度（Firefox）
+      // #toolbar=1: 顯示工具欄
+      const pdfUrl = `${pdfFile}#page=1&zoom=page-fit&view=FitH&toolbar=1`;
+      lightboxPdf.src = pdfUrl;
+      
+      // 顯示燈箱
+      lightbox.classList.remove("closing");
+      lightbox.classList.add("active");
+      
+      // 防止背景滾動
+      document.body.style.overflow = "hidden";
+      
+      // 等待 iframe 載入後，嘗試調整縮放（備用方案）
+      lightboxPdf.onload = function() {
+        try {
+          // 某些瀏覽器可能需要通過 iframe 內容來調整
+          // 但由於跨域限制，這可能無法直接實現
+          // 主要依賴 URL 參數來控制顯示
+        } catch (e) {
+          // 忽略跨域錯誤
+        }
+      };
+    } else {
+      // 否則顯示圖片（原有功能）
+      isPdfView = false;
+      const imgSrc = img.src;
+      const imgAlt = img.alt;
+      
+      // 儲存原始圖片的位置和尺寸
+      const rect = img.getBoundingClientRect();
+      originalImageData = {
+        src: imgSrc,
+        alt: imgAlt,
+        x: rect.left,
+        y: rect.top,
+        width: rect.width,
+        height: rect.height,
+      };
 
-    // 設置燈箱圖片
-    lightboxImage.src = imgSrc;
-    lightboxImage.alt = imgAlt;
-    
-    // 初始位置設置為原始圖片位置（用於動畫）
-    lightboxImage.style.position = "fixed";
-    lightboxImage.style.left = `${rect.left}px`;
-    lightboxImage.style.top = `${rect.top}px`;
-    lightboxImage.style.width = `${rect.width}px`;
-    lightboxImage.style.height = `${rect.height}px`;
-    
-    // 顯示燈箱
-    lightbox.classList.remove("closing");
-    lightbox.classList.add("active");
-    
-    // 強制重排，然後觸發動畫
-    requestAnimationFrame(() => {
+      // 設置燈箱圖片
+      lightboxPdf.style.display = "none";
+      lightboxImage.style.display = "block";
+      lightboxImage.src = imgSrc;
+      lightboxImage.alt = imgAlt;
+      
+      // 初始位置設置為原始圖片位置（用於動畫）
+      lightboxImage.style.position = "fixed";
+      lightboxImage.style.left = `${rect.left}px`;
+      lightboxImage.style.top = `${rect.top}px`;
+      lightboxImage.style.width = `${rect.width}px`;
+      lightboxImage.style.height = `${rect.height}px`;
+      
+      // 顯示燈箱
+      lightbox.classList.remove("closing");
+      lightbox.classList.add("active");
+      
+      // 強制重排，然後觸發動畫
       requestAnimationFrame(() => {
-        lightboxImage.style.position = "";
-        lightboxImage.style.left = "";
-        lightboxImage.style.top = "";
-        lightboxImage.style.width = "";
-        lightboxImage.style.height = "";
-        lightboxImage.classList.remove("closing");
+        requestAnimationFrame(() => {
+          lightboxImage.style.position = "";
+          lightboxImage.style.left = "";
+          lightboxImage.style.top = "";
+          lightboxImage.style.width = "";
+          lightboxImage.style.height = "";
+          lightboxImage.classList.remove("closing");
+        });
       });
-    });
-    
-    // 防止背景滾動
-    document.body.style.overflow = "hidden";
+      
+      // 防止背景滾動
+      document.body.style.overflow = "hidden";
+    }
   });
 });
 
@@ -253,31 +323,43 @@ portfolioItems.forEach((item) => {
 function closeLightbox() {
   if (!lightbox.classList.contains("active")) return;
   
-  // 同時觸發背景漸變和圖片縮小動畫
-  lightbox.classList.add("closing");
-  lightboxImage.classList.add("closing");
-  
-  // 設置縮小動畫的目標位置和尺寸
-  if (originalImageData) {
-    lightboxImage.style.position = "fixed";
-    lightboxImage.style.left = `${originalImageData.x}px`;
-    lightboxImage.style.top = `${originalImageData.y}px`;
-    lightboxImage.style.width = `${originalImageData.width}px`;
-    lightboxImage.style.height = `${originalImageData.height}px`;
+  if (isPdfView) {
+    // PDF 模式：直接關閉
+    lightbox.classList.add("closing");
+    setTimeout(() => {
+      lightbox.classList.remove("active", "closing");
+      lightboxPdf.src = "";
+      lightboxPdf.style.display = "none";
+      document.body.style.overflow = "";
+      isPdfView = false;
+    }, 400);
+  } else {
+    // 圖片模式：縮小動畫
+    lightbox.classList.add("closing");
+    lightboxImage.classList.add("closing");
+    
+    // 設置縮小動畫的目標位置和尺寸
+    if (originalImageData) {
+      lightboxImage.style.position = "fixed";
+      lightboxImage.style.left = `${originalImageData.x}px`;
+      lightboxImage.style.top = `${originalImageData.y}px`;
+      lightboxImage.style.width = `${originalImageData.width}px`;
+      lightboxImage.style.height = `${originalImageData.height}px`;
+    }
+    
+    // 等待動畫完成後隱藏燈箱
+    setTimeout(() => {
+      lightbox.classList.remove("active", "closing");
+      lightboxImage.style.position = "";
+      lightboxImage.style.left = "";
+      lightboxImage.style.top = "";
+      lightboxImage.style.width = "";
+      lightboxImage.style.height = "";
+      lightboxImage.classList.remove("closing");
+      document.body.style.overflow = "";
+      originalImageData = null;
+    }, 400);
   }
-  
-  // 等待動畫完成後隱藏燈箱
-  setTimeout(() => {
-    lightbox.classList.remove("active", "closing");
-    lightboxImage.style.position = "";
-    lightboxImage.style.left = "";
-    lightboxImage.style.top = "";
-    lightboxImage.style.width = "";
-    lightboxImage.style.height = "";
-    lightboxImage.classList.remove("closing");
-    document.body.style.overflow = "";
-    originalImageData = null;
-  }, 400);
 }
 
 // 點擊關閉按鈕
