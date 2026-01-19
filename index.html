@@ -9,11 +9,13 @@
       content="陳愷的個人履歷與作品集，包含關於我、技能、經歷與作品展示。"
     />
     <link rel="stylesheet" href="style.css" />
-    <!-- Google Fonts -->
+    <!-- Preload critical resources -->
+    <link rel="preload" href="profile-photo.jpg.jpg" as="image" />
+    <!-- Google Fonts - Inter (專業無襯線字體) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <!-- Icons (Font Awesome CDN, 純前端使用) -->
@@ -29,274 +31,505 @@
     <div class="page-gradient"></div>
 
     <header class="navbar">
-      <a href="#top" class="logo">ChenKai</a>
+      <a href="#profile" class="logo">ChenKai</a>
       <nav class="nav-links">
-        <a href="#about-me">About</a>
-        <a href="#about">Performance Indicators</a>
-        <a href="#skills">Strategic Objectives</a>
-        <a href="#experience">IDP</a>
-        <a href="#portfolio">Portfolio</a>
+        <a href="#profile">Profile</a>
+        <a href="#works">Portfolio</a>
+        <a href="#vision">Vision & Growth</a>
+        <a href="#contact">Get in Touch</a>
       </nav>
-      <a href="#contact" class="nav-cta">Contact</a>
     </header>
 
     <main>
-      <section class="hero" id="top">
-        <div class="hero-content">
-          <h1 class="hero-title animate-fade-up delay-1">
-            <span class="hero-hello">Hello</span>
-            <span class="hero-name">I'm Chen Kai</span>
-          </h1>
-          <p class="hero-subtitle animate-fade-up delay-2">
-            An ambitious designer
-          </p>
-          <div class="hero-meta animate-fade-up delay-4">
-            <div class="hero-meta-item">
-              <span class="label">專長</span>
-              <span class="value">工業設計 / 服務設計 / 使用者研究</span>
-            </div>
-            <div class="hero-meta-item">
-              <span class="label">位置</span>
-              <span class="value">Taiwan</span>
-            </div>
-          </div>
-        </div>
-        <div class="hero-avatar-wrapper animate-float">
-          <div class="avatar-container">
-            <img src="profile-photo.jpg.jpg" alt="Chen Kai" class="profile-photo" />
-          </div>
-        </div>
-      </section>
-
-      <section id="about-me" class="section">
+      <!-- #profile: Profile - 個人簡介與技能區 -->
+      <section id="profile" class="section">
         <div class="section-header">
-          <h2>關於我</h2>
+          <p class="eyebrow">PROFILE</p>
+          <h2>個人簡介</h2>
         </div>
-        <div class="section-body about-grid">
-          <div class="about-text reveal-on-scroll">
-            <p>
-              我是一位致力於以「人」為核心的設計實踐者，關注設計如何在真實生活中創造價值與情感連結。
-              我的設計興趣橫跨產品設計、服務設計與使用者經驗（UX），並深信設計不僅是形式的創造，
-              更是一種系統性解決問題的方式。
-            </p>
-            <p>
-              我擅長運用多種研究方法，從觀察與訪談中精準提煉使用者需求，並將複雜的議題結構化。
-              在設計過程中，我特別重視跨領域整合，並透過模型製作、互動原型與視覺呈現，
-              將抽象概念具體落實。
-            </p>
-            <p>
-              我期許在學術研究中，持續探索人與環境的互動模式，創造出具備深度、機能與未來感的設計提案。
-            </p>
+        <div class="profile-layout">
+          <!-- 左側：個人照片與簡介 -->
+          <div class="profile-left reveal-on-scroll">
+            <div class="profile-avatar-wrapper">
+              <div class="avatar-container">
+                <img 
+                  src="profile-photo.jpg.jpg" 
+                  alt="Chen Kai" 
+                  class="profile-photo" 
+                  width="400"
+                  height="533"
+                  fetchpriority="high"
+                  loading="eager"
+                />
+              </div>
+            </div>
+            <div class="profile-intro">
+              <p class="profile-tagline">以「人」為核心的設計實踐者，關注設計如何在真實生活中創造價值與情感連結。</p>
+              <div class="profile-download">
+                <a href="個人簡歷(研究所).pdf" class="btn-resume-download-small" download="ChenKai_Resume.pdf">
+                  <i class="fa-solid fa-download"></i>
+                  <span>下載完整履歷 (PDF)</span>
+                </a>
+              </div>
+            </div>
           </div>
-          <div class="about-cards reveal-on-scroll">
-            <div class="info-card">
-              <h3><i class="fa-solid fa-graduation-cap"></i> 學歷</h3>
-              <p><strong>國立臺灣科技大學</strong><br>設計系工業設計組<br>2022.9 - 2026.6（預計）</p>
-            </div>
-            <div class="info-card">
-              <h3><i class="fa-solid fa-briefcase"></i> 工作經驗</h3>
-              <p><strong>台灣科技大學設計系模型製作課程 - 助教</strong><br>2023 - 至今</p>
-              <p><strong>Leap Year Design 閏年室內設計公司 - 設計助理</strong><br>2025.6 - 2025.9</p>
-            </div>
-            <div class="info-card">
-              <h3><i class="fa-solid fa-trophy"></i> 得獎經歷</h3>
-              <p>2024.6 A+ 文化資產創意獎，銅獎<br>2024.11 第九屆兩岸新銳設計競賽·華燦獎決賽，一等獎<br>2025.9 2025桃園設計獎，評審特別獎</p>
+
+          <!-- 右側：收合式資訊區塊 -->
+          <div class="profile-right reveal-on-scroll">
+            <div class="profile-accordion">
+              <!-- 學歷 -->
+              <div class="profile-accordion-item">
+                <div class="profile-accordion-header">
+                  <div class="profile-accordion-title-wrapper">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <h3 class="profile-accordion-title">學歷</h3>
+                  </div>
+                  <i class="fa-solid fa-chevron-down profile-accordion-icon"></i>
+                </div>
+                <div class="profile-accordion-preview">
+                  <p class="profile-accordion-preview-text">國立臺灣科技大學 設計系工業設計組（2022.9 - 2026.6 預計）</p>
+                </div>
+                <div class="profile-accordion-content">
+                  <div class="profile-accordion-item-content">
+                    <div class="profile-education-item">
+                      <div class="profile-education-year">2022.9 - 2026.6</div>
+                      <div class="profile-education-details">
+                        <h4>國立臺灣科技大學</h4>
+                        <p>設計系工業設計組（預計）</p>
+                      </div>
+                    </div>
+                    <div class="profile-education-item">
+                      <div class="profile-education-year">2019.9 - 2022.6</div>
+                      <div class="profile-education-details">
+                        <h4>台北市立建國中學</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 工作經驗 -->
+              <div class="profile-accordion-item">
+                <div class="profile-accordion-header">
+                  <div class="profile-accordion-title-wrapper">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <h3 class="profile-accordion-title">工作經驗</h3>
+                  </div>
+                  <i class="fa-solid fa-chevron-down profile-accordion-icon"></i>
+                </div>
+                <div class="profile-accordion-preview">
+                  <p class="profile-accordion-preview-text">台灣科技大學設計系模型製作課程 - 助教（2023 - 至今）<br>Leap Year Design 閏年室內設計公司 - 設計助理（2025.6 - 2025.9）</p>
+                </div>
+                <div class="profile-accordion-content">
+                  <div class="profile-accordion-item-content">
+                    <div class="profile-experience-item">
+                      <div class="profile-experience-header">
+                        <h4>台灣科技大學設計系模型製作課程 - 助教</h4>
+                        <span class="profile-experience-period">2023 - 至今</span>
+                      </div>
+                      <p class="profile-experience-detail">具兩年的教學經驗，主要負責教導模型的製作過程和方法，協助教授輔導學生。</p>
+                    </div>
+                    <div class="profile-experience-item">
+                      <div class="profile-experience-header">
+                        <h4>Leap Year Design 閏年室內設計公司 - 設計助理</h4>
+                        <span class="profile-experience-period">2025.6 - 2025.9</span>
+                      </div>
+                      <p class="profile-experience-detail">透過實習進行業界實務學習，負責業主諮詢、室內設計製圖到案場監工，增加設計實務經驗。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 得獎經歷 -->
+              <div class="profile-accordion-item">
+                <div class="profile-accordion-header">
+                  <div class="profile-accordion-title-wrapper">
+                    <i class="fa-solid fa-trophy"></i>
+                    <h3 class="profile-accordion-title">得獎經歷</h3>
+                  </div>
+                  <i class="fa-solid fa-chevron-down profile-accordion-icon"></i>
+                </div>
+                <div class="profile-accordion-preview">
+                  <p class="profile-accordion-preview-text">2025桃園設計獎，評審特別獎 | 第九屆兩岸新銳設計競賽·華燦獎決賽，一等獎 | 多項設計競賽獲獎</p>
+                </div>
+                <div class="profile-accordion-content">
+                  <div class="profile-accordion-item-content">
+                    <div class="profile-awards-timeline">
+                      <div class="profile-award-item">
+                        <div class="profile-award-year">2025</div>
+                        <div class="profile-award-content">
+                          <div class="profile-award-date">9月</div>
+                          <div class="profile-award-info">
+                            <strong>2025桃園設計獎，評審特別獎</strong>
+                            <span>馬祖藍眼淚高梁酒瓶</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="profile-award-item">
+                        <div class="profile-award-year">2024</div>
+                        <div class="profile-award-content">
+                          <div class="profile-award-date">11月</div>
+                          <div class="profile-award-info">
+                            <strong>第九屆兩岸新銳設計競賽·華燦獎決賽，一等獎</strong>
+                            <span>AD-03,一種能維持光源和信號的新形態救生筏</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="profile-award-item">
+                        <div class="profile-award-year"></div>
+                        <div class="profile-award-content">
+                          <div class="profile-award-date">11月</div>
+                          <div class="profile-award-info">
+                            <strong>第九屆兩岸新銳設計競賽·華燦獎決賽，二等獎</strong>
+                            <span>生紅調酒-馬祖老酒調酒禮盒</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="profile-award-item">
+                        <div class="profile-award-year"></div>
+                        <div class="profile-award-content">
+                          <div class="profile-award-date">11月</div>
+                          <div class="profile-award-info">
+                            <strong>第九屆兩岸新銳設計競賽·華燦獎決賽，二等獎</strong>
+                            <span>馬祖藍眼淚高梁酒瓶</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="profile-award-item">
+                        <div class="profile-award-year"></div>
+                        <div class="profile-award-content">
+                          <div class="profile-award-date">10月</div>
+                          <div class="profile-award-info">
+                            <strong>馬祖國際藝術島文創商品徵選，銀獎</strong>
+                            <span>生紅調酒-馬祖老酒調酒禮盒</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="profile-award-item">
+                        <div class="profile-award-year"></div>
+                        <div class="profile-award-content">
+                          <div class="profile-award-date">10月</div>
+                          <div class="profile-award-info">
+                            <strong>馬祖國際藝術島文創商品徵選，優選</strong>
+                            <span>馬祖藍眼淚高梁酒瓶</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="profile-award-item">
+                        <div class="profile-award-year"></div>
+                        <div class="profile-award-content">
+                          <div class="profile-award-date">6月</div>
+                          <div class="profile-award-info">
+                            <strong>A+ 文化資產創意獎，銅獎</strong>
+                            <span>馬祖藍眼淚高梁酒瓶</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="profile-award-item">
+                        <div class="profile-award-year"></div>
+                        <div class="profile-award-content">
+                          <div class="profile-award-date">6月</div>
+                          <div class="profile-award-info">
+                            <strong>A+ 文化資產創意獎，決賽</strong>
+                            <span>生紅調酒-馬祖老酒調酒禮盒</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 技能 -->
+              <div class="profile-accordion-item">
+                <div class="profile-accordion-header">
+                  <div class="profile-accordion-title-wrapper">
+                    <i class="fa-solid fa-tools"></i>
+                    <h3 class="profile-accordion-title">技能</h3>
+                  </div>
+                  <i class="fa-solid fa-chevron-down profile-accordion-icon"></i>
+                </div>
+                <div class="profile-accordion-preview">
+                  <p class="profile-accordion-preview-text">Software: Rhino, SolidWorks, Keyshot, Adobe CC | Design Skills: CMF, Prototyping, Design Research, User Experience</p>
+                </div>
+                <div class="profile-accordion-content">
+                  <div class="profile-accordion-item-content">
+                    <div class="profile-skills-grid">
+                      <div class="profile-skill-category">
+                        <h4 class="profile-skill-category-title">Software</h4>
+                        <div class="skills-pills">
+                          <span class="skill-pill">Rhino</span>
+                          <span class="skill-pill">SolidWorks</span>
+                          <span class="skill-pill">Keyshot</span>
+                          <span class="skill-pill">Adobe CC</span>
+                        </div>
+                      </div>
+                      <div class="profile-skill-category">
+                        <h4 class="profile-skill-category-title">Design Skills</h4>
+                        <div class="skills-pills">
+                          <span class="skill-pill">CMF</span>
+                          <span class="skill-pill">Prototyping</span>
+                          <span class="skill-pill">Design Research</span>
+                          <span class="skill-pill">User Experience</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="about" class="section">
-        <div class="section-header">
-          <h2>Performance Indicators</h2>
-          <p class="section-summary">持續完成設計畢業專題、銜接研究所課程</p>
-        </div>
-        <div class="section-body">
-          <div class="content-list reveal-on-scroll">
-            <div class="content-item">
-              <div class="content-item-header">
-                <h3>系統性技術學習</h3>
-                <i class="fa-solid fa-chevron-down"></i>
-              </div>
-              <div class="content-item-content">
-                <p>透過線上課程與教學影片，建立完整的技術知識體系</p>
-                <ul>
-                  <li>前端基礎：深入學習 HTML5 語義化標籤、CSS3 進階特性（Flexbox、Grid、動畫）、JavaScript ES6+ 語法與 DOM 操作</li>
-                  <li>後端基礎：理解資料流程、API 設計概念、前後端串接機制、資料庫基本操作與 RESTful API 設計原則</li>
-                  <li>實作練習：完成多個課程專案與實作範例，從基礎到進階逐步累積實際開發經驗，建立程式碼除錯與問題解決能力</li>
-                </ul>
-              </div>
-            </div>
-            <div class="content-item">
-              <div class="content-item-header">
-                <h3>提前適應研究所學習</h3>
-                <i class="fa-solid fa-chevron-down"></i>
-              </div>
-              <div class="content-item-content">
-                <p>大四期間主動先修研究所課程，提前熟悉學術研究的學習節奏與課程深度</p>
-                <ul>
-                  <li>參與研究所層級的設計理論課程，學習系統性研究方法與學術寫作規範</li>
-                  <li>提前接觸服務設計、使用者研究等進階課程，建立更深入的設計思維</li>
-                  <li>適應高強度的學術討論與專案要求，培養獨立研究與批判性思考能力</li>
-                </ul>
-              </div>
-            </div>
-            <div class="content-item">
-              <div class="content-item-header">
-                <h3>持續設計實作</h3>
-                <i class="fa-solid fa-chevron-down"></i>
-              </div>
-              <div class="content-item-content">
-                <p>在學習技術的同時，持續完成設計畢業專題、銜接研究所課程</p>
-                <ul>
-                  <li>完成多個設計專題，從概念發想到原型製作，完整實踐設計流程</li>
-                  <li>精進模型製作技能，熟悉各種材料特性與加工技術，提升實體原型品質</li>
-                  <li>整合設計與技術，將設計概念透過程式碼實現，驗證設計的可行性與使用者體驗</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="skills" class="section">
-        <div class="section-header">
-          <h2>Strategic Objectives</h2>
-          <p class="section-summary">不只停留在設計表現，而是補足數位與技術理解</p>
-        </div>
-        <div class="section-body">
-          <div class="content-list reveal-on-scroll">
-            <div class="content-item">
-              <div class="content-item-header">
-                <h3>補足數位與技術理解</h3>
-                <i class="fa-solid fa-chevron-down"></i>
-              </div>
-              <div class="content-item-content">
-                <p>突破傳統設計師的框架，主動學習數位技術與程式開發知識</p>
-                <ul>
-                  <li>理解前端開發流程，掌握 HTML、CSS、JavaScript 等基礎技術，能夠獨立完成簡單的網頁實作</li>
-                  <li>學習後端邏輯與資料處理概念，理解系統架構與 API 運作機制，提升對數位產品的整體認知</li>
-                  <li>熟悉設計工具與開發工具的整合，了解設計稿到實際產品的轉換過程與技術限制</li>
-                </ul>
-              </div>
-            </div>
-            <div class="content-item">
-              <div class="content-item-header">
-                <h3>建立研究所學習基礎</h3>
-                <i class="fa-solid fa-chevron-down"></i>
-              </div>
-              <div class="content-item-content">
-                <p>為研究所階段深入學習互動設計、使用者研究與系統型設計課程建立扎實基礎</p>
-                <ul>
-                  <li>互動設計：學習介面互動模式、動態效果設計、使用者流程規劃，理解數位產品的互動邏輯與體驗設計</li>
-                  <li>使用者研究：掌握質性與量性研究方法，學習訪談技巧、問卷設計、使用者測試方法，建立以使用者為中心的設計思維</li>
-                  <li>系統型設計：學習系統思考方法，理解複雜問題的結構化分析，培養從整體角度思考設計解決方案的能力</li>
-                </ul>
-              </div>
-            </div>
-            <div class="content-item">
-              <div class="content-item-header">
-                <h3>提升設計落地可行性</h3>
-                <i class="fa-solid fa-chevron-down"></i>
-              </div>
-              <div class="content-item-content">
-                <p>讓設計不只停在概念階段，而能與工程、技術團隊有效溝通，理解實際實作限制，提升提案落地的可行性</p>
-                <ul>
-                  <li>技術溝通能力：學習技術術語與開發流程，能夠與工程師進行有效溝通，理解技術可行性與實作複雜度</li>
-                  <li>實作限制理解：了解前端框架、後端架構、資料庫設計等技術限制，在設計階段就考慮實作可行性</li>
-                  <li>提案優化：基於技術理解優化設計提案，提出既符合設計目標又具備實作可行性的解決方案，提升設計落地的成功率</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="experience" class="section">
-        <div class="section-header">
-          <h2>IDP</h2>
-          <p class="section-summary">以「人」為核心，真正理解使用者需求，而非只做形式</p>
-        </div>
-        <div class="section-body">
-          <div class="content-list reveal-on-scroll">
-            <div class="content-item">
-              <div class="content-item-header">
-                <h3>深度使用者研究能力</h3>
-                <i class="fa-solid fa-chevron-down"></i>
-              </div>
-              <div class="content-item-content">
-                <p>掌握多種研究方法，從觀察與訪談中精準提煉使用者需求，建立以使用者為中心的設計思維</p>
-                <ul>
-                  <li>質性研究：熟練運用深度訪談、焦點團體、使用者觀察等方法，深入理解使用者的真實需求、痛點與行為模式</li>
-                  <li>量性研究：學習問卷設計、數據分析、統計方法，透過數據驗證設計假設，建立客觀的設計決策依據</li>
-                  <li>需求分析：將複雜的使用者反饋結構化，識別核心需求與次要需求，建立清晰的使用者需求層級與優先順序</li>
-                </ul>
-              </div>
-            </div>
-            <div class="content-item">
-              <div class="content-item-header">
-                <h3>系統觀點與概念轉化</h3>
-                <i class="fa-solid fa-chevron-down"></i>
-              </div>
-              <div class="content-item-content">
-                <p>建立系統性思考能力，將抽象概念轉化為可實現的產品或服務</p>
-                <ul>
-                  <li>系統思考：學習系統分析方法，理解問題的整體結構與各要素間的關係，從系統層面思考設計解決方案</li>
-                  <li>概念具體化：將抽象的使用者需求與設計概念，透過使用者旅程、服務藍圖、資訊架構等工具，轉化為具體的設計方案</li>
-                  <li>原型驗證：運用低保真與高保真原型、互動原型、實體模型等工具，驗證設計概念的可行性與使用者接受度</li>
-                </ul>
-              </div>
-            </div>
-            <div class="content-item">
-              <div class="content-item-header">
-                <h3>跨領域溝通與設計落地</h3>
-                <i class="fa-solid fa-chevron-down"></i>
-              </div>
-              <div class="content-item-content">
-                <p>成為一位能跨領域溝通、理解技術限制、讓設計真正落地的設計師</p>
-                <ul>
-                  <li>跨領域溝通：學習與工程師、產品經理、行銷團隊等不同專業背景的成員有效溝通，用對方理解的語言表達設計理念</li>
-                  <li>技術理解：理解前端、後端、資料庫等技術架構，了解技術限制與可能性，在設計階段就考慮實作可行性</li>
-                  <li>設計落地：從概念發想、原型製作到實際開發，全程參與設計實現過程，確保設計理念能夠完整落地，創造真正的使用者價值</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="portfolio" class="section">
+      <!-- #works: Selected Works - 精選作品區 -->
+      <section id="works" class="section">
         <div class="section-header">
           <p class="eyebrow">PORTFOLIO</p>
           <h2>作品集</h2>
         </div>
         <div class="section-body">
-          <div class="portfolio-grid reveal-on-scroll">
-            <div class="portfolio-item">
-              <img src="生紅調酒作品集_工作區域 1.jpg" alt="生紅調酒 - Old Wine Bartending" />
+          <div class="portfolio-grid">
+            <div class="portfolio-item reveal-on-scroll">
+              <div class="portfolio-image-wrapper">
+                <img 
+                  src="生紅調酒作品集_工作區域 1.jpg" 
+                  alt="生紅調酒 - Old Wine Bartending" 
+                  loading="lazy"
+                  width="600"
+                  height="450"
+                  decoding="async"
+                />
+                <div class="portfolio-overlay">
+                  <span class="portfolio-cta">View Case Study</span>
+                </div>
+              </div>
+              <div class="portfolio-info">
+                <h3 class="portfolio-title">生紅調酒</h3>
+                <p class="portfolio-category">Industrial Design | 2024</p>
+              </div>
             </div>
-            <div class="portfolio-item">
-              <img src="海龜復育箱(作品集)_工作區域 1.jpg" alt="Cradle - 海龜復育箱" />
+            <div class="portfolio-item reveal-on-scroll">
+              <div class="portfolio-image-wrapper">
+                <img 
+                  src="海龜復育箱(作品集)_工作區域 1.jpg" 
+                  alt="Cradle - 海龜復育箱" 
+                  loading="lazy"
+                  width="600"
+                  height="450"
+                  decoding="async"
+                />
+                <div class="portfolio-overlay">
+                  <span class="portfolio-cta">View Case Study</span>
+                </div>
+              </div>
+              <div class="portfolio-info">
+                <h3 class="portfolio-title">Cradle - 海龜復育箱</h3>
+                <p class="portfolio-category">Product Design | 2024</p>
+              </div>
             </div>
-            <div class="portfolio-item">
-              <img src="Wave Haven作品集展板_工作區域 1.jpg" alt="Wave Haven - 貓咪友善環境" />
+            <div class="portfolio-item reveal-on-scroll">
+              <div class="portfolio-image-wrapper">
+                <img 
+                  src="Wave Haven作品集展板_工作區域 1.jpg" 
+                  alt="Wave Haven - 貓咪友善環境" 
+                  loading="lazy"
+                  width="600"
+                  height="450"
+                  decoding="async"
+                />
+                <div class="portfolio-overlay">
+                  <span class="portfolio-cta">View Case Study</span>
+                </div>
+              </div>
+              <div class="portfolio-info">
+                <h3 class="portfolio-title">Wave Haven</h3>
+                <p class="portfolio-category">Service Design | 2024</p>
+              </div>
             </div>
-            <div class="portfolio-item">
-              <img src="公益行動作品集_工作區域 1.jpg" alt="IPASS MONEY 公益行動" />
+            <div class="portfolio-item reveal-on-scroll">
+              <div class="portfolio-image-wrapper">
+                <img 
+                  src="公益行動作品集_工作區域 1.jpg" 
+                  alt="IPASS MONEY 公益行動" 
+                  loading="lazy"
+                  width="600"
+                  height="450"
+                  decoding="async"
+                />
+                <div class="portfolio-overlay">
+                  <span class="portfolio-cta">View Case Study</span>
+                </div>
+              </div>
+              <div class="portfolio-info">
+                <h3 class="portfolio-title">IPASS MONEY 公益行動</h3>
+                <p class="portfolio-category">UX Design | 2024</p>
+              </div>
             </div>
-            <div class="portfolio-item">
-              <img src="等車亭作品集_工作區域 1.jpg" alt="Navora - 舒適永續的 Uber 等車空間" />
+            <div class="portfolio-item reveal-on-scroll">
+              <div class="portfolio-image-wrapper">
+                <img 
+                  src="等車亭作品集_工作區域 1.jpg" 
+                  alt="Navora - 舒適永續的 Uber 等車空間" 
+                  loading="lazy"
+                  width="600"
+                  height="450"
+                  decoding="async"
+                />
+                <div class="portfolio-overlay">
+                  <span class="portfolio-cta">View Case Study</span>
+                </div>
+              </div>
+              <div class="portfolio-info">
+                <h3 class="portfolio-title">Navora - 等車空間</h3>
+                <p class="portfolio-category">Industrial Design | 2024</p>
+              </div>
             </div>
-            <div class="portfolio-item">
-              <img src="AD-03作品集_工作區域 1.jpg" alt="AD-03 - 新型救生筏" />
+            <div class="portfolio-item reveal-on-scroll">
+              <div class="portfolio-image-wrapper">
+                <img 
+                  src="AD-03作品集_工作區域 1.jpg" 
+                  alt="AD-03 - 新型救生筏" 
+                  loading="lazy"
+                  width="600"
+                  height="450"
+                  decoding="async"
+                />
+                <div class="portfolio-overlay">
+                  <span class="portfolio-cta">View Case Study</span>
+                </div>
+              </div>
+              <div class="portfolio-info">
+                <h3 class="portfolio-title">AD-03 - 新型救生筏</h3>
+                <p class="portfolio-category">Product Design | 2024</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- #vision: Vision & Growth - 階段目標與設計想法 -->
+      <section id="vision" class="section">
+        <div class="section-header">
+          <p class="eyebrow">VISION & GROWTH</p>
+          <h2>願景與成長</h2>
+        </div>
+        <div class="section-body">
+          <!-- 願景卡片 -->
+          <div class="vision-cards">
+            <div class="vision-card reveal-on-scroll">
+              <h3 class="vision-card-title">Short-term Focus</h3>
+              <p class="vision-card-content">深化 CMF 流程研究與 Rhino/Grasshopper 參數化建模的實際應用，追求設計的量產可行性。</p>
+            </div>
+            <div class="vision-card reveal-on-scroll">
+              <h3 class="vision-card-title">Mid-term Ambition</h3>
+              <p class="vision-card-content">期待從單純產品造型延伸至產品策略，參與完整的產品開發生命週期，打造具備市場洞察力的解決方案。</p>
+            </div>
+            <div class="vision-card reveal-on-scroll">
+              <h3 class="vision-card-title">Design Philosophy</h3>
+              <p class="vision-card-content">主張「有溫度的科技」，工業設計應作為使用者與環境間的橋樑，讓產品成為情感的載體而非冰冷的工具。</p>
+            </div>
+          </div>
+
+          <!-- 收合式內容區塊 -->
+          <div class="vision-accordion">
+            <!-- Strategic Objectives -->
+            <div class="vision-accordion-item">
+              <div class="vision-accordion-header">
+                <div class="vision-accordion-title-wrapper">
+                  <i class="fa-solid fa-bullseye"></i>
+                  <h3 class="vision-accordion-title">Strategic Objectives</h3>
+                </div>
+                <i class="fa-solid fa-chevron-down vision-accordion-icon"></i>
+              </div>
+              <div class="vision-accordion-preview">
+                <p class="vision-accordion-preview-text">不只停留在設計表現，而是補足數位與技術理解，建立研究所學習基礎，提升設計落地可行性。</p>
+              </div>
+              <div class="vision-accordion-content">
+                <div class="vision-accordion-item-content">
+                  <div class="vision-content-item">
+                    <h4 class="vision-content-item-title">補足數位與技術理解</h4>
+                    <p class="vision-content-item-description">突破傳統設計師的框架，主動學習數位技術與程式開發知識</p>
+                    <ul class="vision-content-item-list">
+                      <li>理解前端開發流程，掌握 HTML、CSS、JavaScript 等基礎技術，能夠獨立完成簡單的網頁實作</li>
+                      <li>學習後端邏輯與資料處理概念，理解系統架構與 API 運作機制，提升對數位產品的整體認知</li>
+                      <li>熟悉設計工具與開發工具的整合，了解設計稿到實際產品的轉換過程與技術限制</li>
+                    </ul>
+                  </div>
+                  <div class="vision-content-item">
+                    <h4 class="vision-content-item-title">建立研究所學習基礎</h4>
+                    <p class="vision-content-item-description">為研究所階段深入學習互動設計、使用者研究與系統型設計課程建立扎實基礎</p>
+                    <ul class="vision-content-item-list">
+                      <li>互動設計：學習介面互動模式、動態效果設計、使用者流程規劃，理解數位產品的互動邏輯與體驗設計</li>
+                      <li>使用者研究：掌握質性與量性研究方法，學習訪談技巧、問卷設計、使用者測試方法，建立以使用者為中心的設計思維</li>
+                      <li>系統型設計：學習系統思考方法，理解複雜問題的結構化分析，培養從整體角度思考設計解決方案的能力</li>
+                    </ul>
+                  </div>
+                  <div class="vision-content-item">
+                    <h4 class="vision-content-item-title">提升設計落地可行性</h4>
+                    <p class="vision-content-item-description">讓設計不只停在概念階段，而能與工程、技術團隊有效溝通，理解實際實作限制，提升提案落地的可行性</p>
+                    <ul class="vision-content-item-list">
+                      <li>技術溝通能力：學習技術術語與開發流程，能夠與工程師進行有效溝通，理解技術可行性與實作複雜度</li>
+                      <li>實作限制理解：了解前端框架、後端架構、資料庫設計等技術限制，在設計階段就考慮實作可行性</li>
+                      <li>提案優化：基於技術理解優化設計提案，提出既符合設計目標又具備實作可行性的解決方案，提升設計落地的成功率</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- IDP -->
+            <div class="vision-accordion-item">
+              <div class="vision-accordion-header">
+                <div class="vision-accordion-title-wrapper">
+                  <i class="fa-solid fa-user-circle"></i>
+                  <h3 class="vision-accordion-title">IDP</h3>
+                </div>
+                <i class="fa-solid fa-chevron-down vision-accordion-icon"></i>
+              </div>
+              <div class="vision-accordion-preview">
+                <p class="vision-accordion-preview-text">以「人」為核心，真正理解使用者需求，而非只做形式。建立深度使用者研究能力、系統觀點與概念轉化、跨領域溝通與設計落地。</p>
+              </div>
+              <div class="vision-accordion-content">
+                <div class="vision-accordion-item-content">
+                  <div class="vision-content-item">
+                    <h4 class="vision-content-item-title">深度使用者研究能力</h4>
+                    <p class="vision-content-item-description">掌握多種研究方法，從觀察與訪談中精準提煉使用者需求，建立以使用者為中心的設計思維</p>
+                    <ul class="vision-content-item-list">
+                      <li>質性研究：熟練運用深度訪談、焦點團體、使用者觀察等方法，深入理解使用者的真實需求、痛點與行為模式</li>
+                      <li>量性研究：學習問卷設計、數據分析、統計方法，透過數據驗證設計假設，建立客觀的設計決策依據</li>
+                      <li>需求分析：將複雜的使用者反饋結構化，識別核心需求與次要需求，建立清晰的使用者需求層級與優先順序</li>
+                    </ul>
+                  </div>
+                  <div class="vision-content-item">
+                    <h4 class="vision-content-item-title">系統觀點與概念轉化</h4>
+                    <p class="vision-content-item-description">建立系統性思考能力，將抽象概念轉化為可實現的產品或服務</p>
+                    <ul class="vision-content-item-list">
+                      <li>系統思考：學習系統分析方法，理解問題的整體結構與各要素間的關係，從系統層面思考設計解決方案</li>
+                      <li>概念具體化：將抽象的使用者需求與設計概念，透過使用者旅程、服務藍圖、資訊架構等工具，轉化為具體的設計方案</li>
+                      <li>原型驗證：運用低保真與高保真原型、互動原型、實體模型等工具，驗證設計概念的可行性與使用者接受度</li>
+                    </ul>
+                  </div>
+                  <div class="vision-content-item">
+                    <h4 class="vision-content-item-title">跨領域溝通與設計落地</h4>
+                    <p class="vision-content-item-description">成為一位能跨領域溝通、理解技術限制、讓設計真正落地的設計師</p>
+                    <ul class="vision-content-item-list">
+                      <li>跨領域溝通：學習與工程師、產品經理、行銷團隊等不同專業背景的成員有效溝通，用對方理解的語言表達設計理念</li>
+                      <li>技術理解：理解前端、後端、資料庫等技術架構，了解技術限制與可能性，在設計階段就考慮實作可行性</li>
+                      <li>設計落地：從概念發想、原型製作到實際開發，全程參與設計實現過程，確保設計理念能夠完整落地，創造真正的使用者價值</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- #contact: Get in Touch - 聯絡資訊與履歷下載 -->
       <section id="contact" class="section">
         <div class="section-header">
-          <p class="eyebrow">CONTACT</p>
+          <p class="eyebrow">GET IN TOUCH</p>
           <h2>聯絡我</h2>
         </div>
         <div class="section-body contact-grid">
@@ -317,6 +550,10 @@
               <div class="contact-row">
                 <i class="fa-solid fa-location-dot"></i>
                 <span>Taiwan</span>
+              </div>
+              <div class="contact-row">
+                <i class="fa-solid fa-file-pdf"></i>
+                <a href="個人簡歷(研究所).pdf" class="resume-download" download="ChenKai_Resume.pdf">下載履歷 (PDF)</a>
               </div>
             </div>
           </div>
@@ -353,10 +590,10 @@
     </main>
 
     <footer class="footer">
-      <a href="#top" class="scroll-top" aria-label="回到頂部">
+      <a href="#profile" class="scroll-top" aria-label="回到頂部">
         <i class="fa-solid fa-arrow-up"></i>
       </a>
-      <p>© <span id="year"></span> 陳愷. All rights reserved.</p>
+      <p>© <span id="year"></span> 陳愷. Designed by ChenKai.</p>
     </footer>
 
     <!-- 作品集圖片燈箱 -->
