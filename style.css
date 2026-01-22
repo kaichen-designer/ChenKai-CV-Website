@@ -2073,6 +2073,17 @@ body.light .project-meta li {
   box-shadow: none !important;
 }
 
+/* 移除聯絡區域的 hover 效果（浮凸、陰影、白色底色） */
+.contact-text.reveal-on-scroll:hover,
+.contact-form.reveal-on-scroll:hover,
+#contact .reveal-on-scroll:hover,
+#contact .reveal-on-scroll:hover * {
+  box-shadow: none !important;
+  transform: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
 /* 移除照片區域的 hover 效果 */
 .profile-left.reveal-on-scroll:hover,
 .profile-left.reveal-on-scroll:hover *,
