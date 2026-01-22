@@ -68,13 +68,14 @@ main {
   margin: 0 auto;
   padding: var(--spacing-md) var(--spacing-md) var(--spacing-2xl);
   position: relative;
+  padding-left: calc(var(--spacing-md) + 60px); /* 為左側線條預留空間 */
 }
 
 /* 左側細膠囊裝飾線（全頁面） */
 main::before {
   content: "";
   position: fixed;
-  left: 0;
+  left: -30px;
   top: 0;
   bottom: 0;
   width: 3px;
@@ -426,7 +427,7 @@ body.light .btn.ghost {
 .section::before {
   content: "";
   position: absolute;
-  left: 0;
+  left: -60px;
   top: 0;
   bottom: 0;
   width: 3px;
@@ -668,13 +669,13 @@ body.light .btn.ghost {
   border-radius: 0;
   letter-spacing: 0.02em;
   position: relative;
-  padding-left: calc(var(--spacing-md) + 8px);
+  padding-left: calc(var(--spacing-md) + 8px + 64px); /* 增加兩倍距離：32px * 2 = 64px，加上原本的 32px = 96px */
 }
 
 .section-summary::before {
   content: "";
   position: absolute;
-  left: 0;
+  left: calc(var(--spacing-md) + 8px); /* 與原本的 padding-left 起始位置對齊 */
   top: 50%;
   transform: translateY(-50%);
   width: 6px;
@@ -2134,6 +2135,7 @@ body.light .project-meta li {
 
   main {
     padding-top: 10px;
+    padding-left: var(--spacing-md); /* 恢復正常 padding，因為線條已隱藏 */
   }
   
   main::before {
@@ -2350,12 +2352,20 @@ body.light .project-meta li {
     margin-bottom: var(--spacing-xl);
   }
   
+  main {
+    padding-left: var(--spacing-md); /* 恢復正常 padding，因為線條已隱藏 */
+  }
+  
   main::before {
     display: none;
   }
   
   .section::before {
-    width: 2px;
+    display: none;
+  }
+  
+  .section-summary {
+    padding-left: calc(var(--spacing-md) + 8px); /* 恢復正常 padding */
   }
 
   .section-header {
