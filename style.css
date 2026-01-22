@@ -534,7 +534,7 @@ body.light .btn.ghost {
 }
 
 .portfolio-info {
-  padding: var(--spacing-lg) var(--spacing-md) var(--spacing-lg) var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) var(--spacing-md);
   margin-top: 0; /* 讓文字位於區塊上下邊緣的中間 */
 }
 
@@ -2453,7 +2453,7 @@ body.light .project-meta li {
   }
 
   .portfolio-info {
-    padding: var(--spacing-md) var(--spacing-sm) var(--spacing-md) var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-sm) var(--spacing-sm);
     margin-top: 0;
   }
 
