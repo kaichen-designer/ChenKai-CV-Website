@@ -1836,7 +1836,7 @@ body.light .project-meta li {
 
 .contact-footer-link:hover {
   color: var(--accent);
-  transform: translateY(-1px);
+  transform: none; /* 移除浮凸動畫 */
 }
 
 .contact-footer-link i {
@@ -2077,11 +2077,23 @@ body.light .project-meta li {
 .contact-text.reveal-on-scroll:hover,
 .contact-form.reveal-on-scroll:hover,
 #contact .reveal-on-scroll:hover,
-#contact .reveal-on-scroll:hover * {
+#contact .reveal-on-scroll:hover *,
+#contact .contact-row:hover,
+#contact .contact-row:hover *,
+#contact .contact-footer-link:hover,
+#contact .contact-footer-link:hover * {
   box-shadow: none !important;
   transform: none !important;
   background: transparent !important;
   background-color: transparent !important;
+}
+
+/* 確保聯絡區域內的容器元素也沒有浮凸動畫 */
+#contact .contact-text:hover,
+#contact .contact-info:hover,
+#contact .contact-form:hover {
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 /* 移除照片區域的 hover 效果 */
