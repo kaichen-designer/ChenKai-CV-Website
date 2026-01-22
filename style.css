@@ -67,6 +67,22 @@ main {
   max-width: 1120px;
   margin: 0 auto;
   padding: var(--spacing-md) var(--spacing-md) var(--spacing-2xl);
+  position: relative;
+}
+
+/* 左側細膠囊裝飾線（全頁面） */
+main::before {
+  content: "";
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  border-radius: 0 999px 999px 0;
+  opacity: 0.4;
+  z-index: 1;
+  pointer-events: none;
 }
 
 a {
@@ -399,32 +415,30 @@ body.light .btn.ghost {
 }
 
 .section {
-  margin-top: var(--spacing-xl);
-  margin-bottom: var(--spacing-xl);
-  border-radius: var(--radius-xl);
+  margin-top: var(--spacing-2xl);
+  margin-bottom: var(--spacing-2xl);
   padding: var(--spacing-lg) var(--spacing-md);
-  background: var(--bg);
-  border: 1px solid var(--border-subtle);
-  border-left: 4px solid var(--accent);
-  box-shadow: var(--shadow-soft);
   position: relative;
-  overflow: hidden;
-  transition: box-shadow var(--transition-normal);
+  overflow: visible;
 }
 
-/* body.light .section - 已由 CSS 變數統一管理，無需重複定義 */
-
+/* 左側細膠囊狀裝飾 */
 .section::before {
   content: "";
   position: absolute;
-  inset: -30%;
-  background: transparent;
-  opacity: 0;
-  pointer-events: none;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  border-radius: 0 999px 999px 0;
+  opacity: 0.6;
+  transition: opacity var(--transition-normal), width var(--transition-normal);
 }
 
-.section:hover {
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+.section:hover::before {
+  opacity: 1;
+  width: 4px;
 }
 
 /* 作品集網格 */
@@ -649,10 +663,25 @@ body.light .btn.ghost {
   font-weight: 800;
   color: var(--accent);
   line-height: 1.7;
-  background: var(--bg-alt);
-  border-left: 3px solid var(--accent);
-  border-radius: var(--spacing-xs);
+  background: transparent;
+  border-left: none;
+  border-radius: 0;
   letter-spacing: 0.02em;
+  position: relative;
+  padding-left: calc(var(--spacing-md) + 8px);
+}
+
+.section-summary::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 40px;
+  background: var(--accent);
+  border-radius: 999px;
+  opacity: 0.8;
 }
 
 .section-body {
@@ -668,12 +697,19 @@ body.light .btn.ghost {
 }
 
 .content-item {
-  border-radius: 16px;
-  background: #f5f5f5;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  transition: box-shadow var(--transition-fast);
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: border-color var(--transition-fast);
   position: relative;
   overflow: hidden;
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+}
+
+.content-item:hover {
+  border-bottom-color: var(--accent);
 }
 
 .content-item-image {
@@ -794,9 +830,6 @@ body.light .btn.ghost {
   background-image: url('images/cross-disciplinary.jpg.png');
 }
 
-.content-item:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
 
 .content-item-content p {
   margin: 0 0 12px;
@@ -929,16 +962,18 @@ body.light .btn.ghost {
 }
 
 .profile-accordion-item {
-  border-radius: var(--spacing-sm);
-  background: var(--bg-alt);
-  border: 1px solid var(--border-subtle);
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-subtle);
   overflow: hidden;
-  transition: border-color 0.2s linear, box-shadow 0.2s linear, transform 0.2s linear;
+  transition: border-color 0.2s linear;
+  padding-bottom: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
 }
 
 .profile-accordion-item:hover {
-  border-color: var(--accent);
-  box-shadow: 0 var(--spacing-xs) var(--spacing-sm) rgba(26, 90, 215, 0.08);
+  border-bottom-color: var(--accent);
 }
 
 .profile-accordion-header {
@@ -988,7 +1023,7 @@ body.light .btn.ghost {
 
 .profile-accordion-preview {
   padding: 0 var(--spacing-md) var(--spacing-md);
-  border-top: 1px solid var(--border-subtle);
+  border-top: none;
   transition: opacity 0.3s linear, max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s linear;
   max-height: 200px;
   overflow: hidden;
@@ -1265,16 +1300,17 @@ body.light .btn.ghost {
 
 .info-card {
   padding: var(--spacing-sm) var(--spacing-sm);
-  border-radius: var(--spacing-sm);
-  background: var(--bg-alt);
-  border: 1px solid var(--border-subtle);
-  backdrop-filter: blur(12px);
-  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: none;
+  transition: border-color var(--transition-fast);
+  margin-bottom: var(--spacing-sm);
 }
 
 .info-card:hover {
-  box-shadow: 0 var(--spacing-xs) var(--spacing-md) rgba(0, 0, 0, 0.12);
-  border-color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 
 /* body.light .info-card - 已由 CSS 變數統一管理，無需重複定義 */
@@ -1549,18 +1585,16 @@ body.light .project-meta li {
 
 .vision-card {
   padding: var(--spacing-lg);
-  border-radius: var(--spacing-sm);
-  background: var(--bg);
-  border: 1px solid var(--border-subtle);
-  box-shadow: 0 var(--spacing-xs) var(--spacing-md) rgba(0, 0, 0, 0.06);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast),
-    border-color var(--transition-fast);
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: none;
+  transition: border-color var(--transition-fast);
 }
 
 .vision-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 var(--spacing-xs) var(--spacing-lg) rgba(0, 0, 0, 0.12);
-  border-color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 
 .vision-card-title {
@@ -1587,16 +1621,18 @@ body.light .project-meta li {
 }
 
 .vision-accordion-item {
-  border-radius: var(--spacing-sm);
-  background: var(--bg-alt);
-  border: 1px solid var(--border-subtle);
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-subtle);
   overflow: hidden;
-  transition: border-color 0.2s linear, box-shadow 0.2s linear, transform 0.2s linear;
+  transition: border-color 0.2s linear;
+  padding-bottom: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
 }
 
 .vision-accordion-item:hover {
-  border-color: var(--accent);
-  box-shadow: 0 var(--spacing-xs) var(--spacing-sm) rgba(26, 90, 215, 0.08);
+  border-bottom-color: var(--accent);
 }
 
 .vision-accordion-header {
@@ -1646,7 +1682,7 @@ body.light .project-meta li {
 
 .vision-accordion-preview {
   padding: 0 var(--spacing-md) var(--spacing-md);
-  border-top: 1px solid var(--border-subtle);
+  border-top: none;
   transition: opacity 0.3s linear, max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s linear;
   max-height: 200px;
   overflow: hidden;
@@ -1689,9 +1725,12 @@ body.light .project-meta li {
 
 .vision-content-item {
   padding: var(--spacing-md);
-  border-radius: var(--spacing-sm);
-  background: var(--bg);
-  border: 1px solid var(--border-subtle);
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  border-left: 2px solid var(--accent);
+  padding-left: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
 }
 
 .vision-content-item-title {
@@ -1818,11 +1857,18 @@ body.light .project-meta li {
   align-items: center;
   gap: var(--spacing-xs);
   padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: 999px;
-  background: var(--bg-alt);
-  border: 1px solid var(--border-subtle);
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-subtle);
   font-size: 0.86rem;
-  transition: background var(--transition-fast), border-color var(--transition-fast);
+  transition: border-color var(--transition-fast);
+  margin-bottom: var(--spacing-xs);
+  padding-bottom: var(--spacing-xs);
+}
+
+.contact-row:hover {
+  border-bottom-color: var(--accent);
 }
 
 /* body.light .contact-row - 已由 CSS 變數統一管理，無需重複定義 */
@@ -1849,16 +1895,10 @@ body.light .project-meta li {
 
 .contact-form {
   padding: 14px 14px;
-  border-radius: 16px;
-  background: #f5f5f5;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.06);
-}
-
-body.light .contact-form {
-  background: var(--bg-alt);
-  border-color: var(--border-subtle);
-  box-shadow: 0 var(--spacing-md) var(--spacing-xl) rgba(0, 0, 0, 0.06);
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .field {
@@ -2095,6 +2135,14 @@ body.light .contact-form {
   main {
     padding-top: 10px;
   }
+  
+  main::before {
+    display: none;
+  }
+  
+  .section::before {
+    display: none;
+  }
 
   .navbar {
     padding: 12px 16px;
@@ -2298,6 +2346,16 @@ body.light .contact-form {
   .section {
     padding-inline: 12px;
     padding-block: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  main::before {
+    display: none;
+  }
+  
+  .section::before {
+    width: 2px;
   }
 
   .section-header {
