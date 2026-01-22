@@ -2073,25 +2073,37 @@ body.light .project-meta li {
   box-shadow: none !important;
 }
 
-/* 移除聯絡區域的 hover 效果（浮凸、陰影、白色底色） */
+/* 確保按鈕在聯絡區域內保持正常樣式（優先級最高） */
+#contact .btn:hover,
+#contact button:hover,
+#contact .btn.primary:hover,
+#contact button.primary:hover,
+#contact .btn:hover *,
+#contact button:hover * {
+  transform: translateY(-1px) translateZ(0) !important;
+  box-shadow: 0 var(--spacing-md) var(--spacing-2xl) rgba(26, 90, 215, 0.3) !important;
+  background: var(--accent-hover) !important;
+  background-color: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+  color: #FFFFFF !important;
+}
+
+/* 移除聯絡區域的 hover 效果（浮凸、陰影、白色底色），但排除按鈕 */
 .contact-text.reveal-on-scroll:hover,
 .contact-form.reveal-on-scroll:hover,
-#contact .reveal-on-scroll:hover,
-#contact .reveal-on-scroll:hover *,
-#contact .contact-row:hover,
-#contact .contact-row:hover *,
-#contact .contact-footer-link:hover,
-#contact .contact-footer-link:hover * {
+#contact .reveal-on-scroll:hover:not(.btn):not(button),
+#contact .contact-row:hover:not(.btn):not(button),
+#contact .contact-footer-link:hover:not(.btn):not(button) {
   box-shadow: none !important;
   transform: none !important;
   background: transparent !important;
   background-color: transparent !important;
 }
 
-/* 確保聯絡區域內的容器元素也沒有浮凸動畫 */
-#contact .contact-text:hover,
-#contact .contact-info:hover,
-#contact .contact-form:hover {
+/* 確保聯絡區域內的容器元素也沒有浮凸動畫，但排除按鈕 */
+#contact .contact-text:hover:not(.btn):not(button),
+#contact .contact-info:hover:not(.btn):not(button),
+#contact .contact-form:hover:not(.btn):not(button) {
   transform: none !important;
   box-shadow: none !important;
 }
