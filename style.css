@@ -2068,14 +2068,36 @@ body.light .project-meta li {
   border-radius: 12px; /* 確保 hover 時也有圓角 */
 }
 
+/* 排除照片區域的 reveal-on-scroll hover 效果 */
+.profile-left.reveal-on-scroll:hover {
+  box-shadow: none !important;
+}
+
 /* 移除照片區域的 hover 效果 */
 .profile-left.reveal-on-scroll:hover,
+.profile-left.reveal-on-scroll:hover *,
 .profile-avatar-wrapper:hover,
+.profile-avatar-wrapper:hover *,
 .avatar-container:hover,
-.profile-photo:hover {
+.avatar-container:hover *,
+.profile-photo:hover,
+.profile-photo:hover * {
   box-shadow: none !important;
   transform: none !important;
   background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* 確保 profile-left 容器本身也不受 reveal-on-scroll hover 影響 */
+.profile-left.reveal-on-scroll {
+  pointer-events: auto;
+}
+
+.profile-left.reveal-on-scroll:hover {
+  box-shadow: none !important;
+  transform: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
 }
 
 /* body.light .reveal-on-scroll:hover - 已由 CSS 變數統一管理，無需重複定義 */
