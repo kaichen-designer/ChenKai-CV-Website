@@ -2068,6 +2068,16 @@ body.light .project-meta li {
   border-radius: 12px; /* 確保 hover 時也有圓角 */
 }
 
+/* 移除照片區域的 hover 效果 */
+.profile-left.reveal-on-scroll:hover,
+.profile-avatar-wrapper:hover,
+.avatar-container:hover,
+.profile-photo:hover {
+  box-shadow: none !important;
+  transform: none !important;
+  background: transparent !important;
+}
+
 /* body.light .reveal-on-scroll:hover - 已由 CSS 變數統一管理，無需重複定義 */
 
 /* 平板 (Tablet) - 768px 到 1024px */
